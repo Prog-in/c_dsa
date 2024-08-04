@@ -1,0 +1,8 @@
+# Ignore files without extensions in build/ and tests/tests_build/
+build/*/*
+!build/*/*.*
+tests/tests_build/*/*
+!tests/tests_build/*/*.*
+
+*.o
+*.exe
