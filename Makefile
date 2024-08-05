@@ -25,9 +25,9 @@ TESTS_BIN=$(patsubst $(TESTS_DIR)/%.c,$(TESTS_BIN_DIR)/%,$(TESTS_SOURCE))
 CC=gcc
 CC_FLAGS=-Wall -Werror -Wextra -pedantic
 
-all: $(OBJ)
+all: clean $(OBJ)
 
-tests: $(TESTS_BIN)
+tests: clean $(TESTS_BIN)
 
 clean:
 ifeq ($(OS),Windows_NT)
