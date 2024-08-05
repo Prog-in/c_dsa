@@ -1,25 +1,41 @@
 #include "LinkedList.h"
 #include <stdlib.h>
 
-Node* initList(T_DATA *defaultValue)
+Node* initList(T_DATA defaultValue)
 {
-    Node *list = malloc(sizeof(Node));
-    if (list != NULL)
+    Node *head = malloc(sizeof(Node));
+    if (head != NULL)
     {
-        list->next = NULL;
-        list->value = defaultValue;
+        head->next = NULL;
+        head->value = defaultValue;
     }
-    return list;
+    return head;
 }
 
-Node* addNode(Node *head, T_DATA *v)
+void destroyList(Node *head)
+{
+    while (head != NULL)
+    {
+        Node *next = head->next;
+        free(head);
+        head = next;
+    }
+}
+
+Node* addNode(Node *head, T_DATA v)
 {
     Node *newHead = initList(v);
+
+    if (newHead == NULL)
+    {
+        return head;
+    }
+
     newHead->next = head;
     return newHead;
 }
 
-Node* removeNode(Node *head, T_DATA *v)
+Node* removeNode(Node *head, T_DATA v)
 {
     if (head != NULL && head->value == v)
     {
@@ -44,7 +60,7 @@ Node* removeNode(Node *head, T_DATA *v)
     return head;
 }
 
-Node* searchNode(Node *head, T_DATA *v)
+Node* searchNode(Node *head, T_DATA v)
 {
     while (head != NULL && head->value != v)
     {
